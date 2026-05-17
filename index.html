@@ -1,69 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ShipsTime — Privacy Policy</title>
-<style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    color: #222;
-    max-width: 760px;
-    margin: 40px auto;
-    padding: 0 20px 60px;
-    background: #fafafa;
-  }
-  h1 { color: #0d3b66; margin-top: 0; }
-  h2 { color: #0d3b66; margin-top: 32px; }
-  a { color: #1a73e8; }
-  .footer {
-    margin-top: 48px;
-    padding-top: 16px;
-    border-top: 1px solid #ddd;
-    font-size: 0.9em;
-    color: #666;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShipsTime — Privacy Policy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0d14;
+            --surface: #111520;
+            --border: #1e2535;
+            --accent: #4fa3c7;
+            --accent-dim: #2a5f7a;
+            --text: #dce3ee;
+            --text-sec: #7a8ba3;
+            --text-dim: #3d4f66;
+            --mono: 'DM Mono', monospace;
+            --sans: 'DM Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 15px;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Subtle nautical grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 48px 48px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 64px 24px 96px;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 56px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 32px;
+        }
+
+        .app-name {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-name::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        h1 {
+            font-family: var(--mono);
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--text);
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .effective {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Overview pill */
+        .overview {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 4px;
+            padding: 20px 24px;
+            margin-bottom: 48px;
+            font-size: 14px;
+            color: var(--text-sec);
+            line-height: 1.65;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        h2 {
+            font-family: var(--mono);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        p {
+            color: var(--text-sec);
+            font-size: 14px;
+            margin-bottom: 24px;
+            line-height: 1.75;
+        }
+
+        /* No-collect list */
+        .no-collect {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .no-collect li {
+            font-size: 13px;
+            color: var(--text-sec);
+            font-family: var(--mono);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .no-collect li::before {
+            content: '✗';
+            color: var(--text-dim);
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+
+        .no-collect li:last-child {
+            border-bottom: none;
+        }
+
+        /* Data item cards */
+        .data-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+        }
+
+        .data-item h2 {
+            margin-bottom: 8px;
+            font-size: 11px;
+        }
+
+        .data-item p {
+            margin-bottom: 0;
+            font-size: 13px;
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .contact-email {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .contact-email:hover {
+            color: var(--text);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 64px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 1.5px;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .wrap { padding: 40px 20px 64px; }
+            h1 { font-size: 22px; }
+        }
+    </style>
 </head>
 <body>
+<div class="wrap">
 
-<h1>Privacy Policy</h1>
+    <header class="header">
+        <div class="app-name">ShipsTime</div>
+        <h1>Privacy Policy</h1>
+        <div class="effective">Effective date: [v2 launch date]</div>
+    </header>
 
-<p>This privacy policy applies to the ShipsTime app (hereby referred to as "Application") for mobile devices that was created by Edwin Vallejos (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".</p>
+    <div class="overview">
+        ShipsTime is a ship time management app built for cruise crew. We believe in simple, honest data practices. This policy explains exactly what data the app uses and why.
+    </div>
 
-<h2>What information does the Application obtain and how is it used?</h2>
-<p>The Application does not obtain any information when you download and use it. Registration is not required to use the Application.</p>
+    <!-- What We Collect -->
+    <div class="section">
+        <div class="section-label">Data collection</div>
 
-<h2>Does the Application collect precise real time location information of the device?</h2>
-<p>This Application does not collect precise information about the location of your mobile device.</p>
+        <div class="data-item">
+            <h2>Ship name</h2>
+            <p>You enter your ship name during onboarding. It is stored locally on your device and used as a search term to retrieve your ship's voyage information, port schedule, and position from a third-party maritime data service. It is not personal data, is not linked to your identity, and is not used for advertising or tracking.</p>
+        </div>
 
-<h2>Do third parties see and/or have access to information obtained by the Application?</h2>
-<p>Since the Application does not collect any information, no data is shared with third parties.</p>
+        <div class="data-item">
+            <h2>Ship time &amp; alarm settings</h2>
+            <p>Your ship time offset, alarm times, and timer preferences are stored locally on your device only. They never leave your device.</p>
+        </div>
 
-<h2>What are my opt-out rights?</h2>
-<p>You can stop all collection of information by the Application easily by uninstalling it. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.</p>
+        <div class="data-item">
+            <h2>App preferences</h2>
+            <p>Theme, time format, and other settings are stored locally on your device only.</p>
+        </div>
+    </div>
 
-<h2>Children</h2>
-<p>The Application is not used to knowingly solicit data from or market to children under the age of 13.</p>
-<p>The Service Provider does not knowingly collect personally identifiable information from children. The Service Provider encourages all children to never submit any personally identifiable information through the Application and/or Services. The Service Provider encourages parents and legal guardians to monitor their children's Internet usage and to help enforce this Policy by instructing their children never to provide personally identifiable information through the Application and/or Services without their permission. If you have reason to believe that a child has provided personally identifiable information to the Service Provider through the Application and/or Services, please contact the Service Provider (edwinshipstime@gmail.com) so that they will be able to take the necessary actions. You must also be at least 16 years of age to consent to the processing of your personally identifiable information in your country (in some countries we may allow your parent or guardian to do so on your behalf).</p>
+    <!-- What We Don't Collect -->
+    <div class="section">
+        <div class="section-label">Not collected</div>
+        <ul class="no-collect">
+            <li>Your name, email address, or any personal identity information</li>
+            <li>Your device location</li>
+            <li>Device identifiers or advertising IDs</li>
+            <li>Data for analytics, advertising, or tracking purposes</li>
+            <li>Health, financial, or payment information</li>
+            <li>Contacts, messages, or calendar data</li>
+        </ul>
+    </div>
 
-<h2>Security</h2>
-<p>The Service Provider is concerned about safeguarding the confidentiality of your information. However, since the Application does not collect any information, there is no risk of your data being accessed by unauthorized individuals.</p>
+    <!-- Third-Party Services -->
+    <div class="section">
+        <div class="section-label">Third-party services</div>
 
-<h2>Changes</h2>
-<p>This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes to their Privacy Policy by updating this page with the new Privacy Policy. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.</p>
-<p><em>This privacy policy is effective as of 2026-05-08.</em></p>
+        <div class="data-item">
+            <h2>Maritime data service</h2>
+            <p>ShipsTime queries a third-party maritime data service using your ship name to retrieve voyage schedules and position information. This is a functional query — equivalent to a search term. No personal information about you is included in this query. We do not control the third-party service's own data practices.</p>
+        </div>
 
-<h2>Your Consent</h2>
-<p>By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by the Service Provider.</p>
+        <div class="data-item">
+            <h2>Google Play Billing</h2>
+            <p>If you purchase a Plus or Pro subscription, payment is processed entirely by Google Play. ShipsTime never sees, receives, or stores your payment information. Google's privacy policy governs the transaction.</p>
+        </div>
+    </div>
 
-<h2>Contact Us</h2>
-<p>If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at <a href="mailto:edwinshipstime@gmail.com">edwinshipstime@gmail.com</a>.</p>
+    <!-- Storage -->
+    <div class="section">
+        <div class="section-label">Storage &amp; retention</div>
+        <p>All app data is stored locally on your device using Android's standard secure storage. We operate no servers and store nothing remotely. App data remains on your device until you uninstall ShipsTime or clear app data. Because we store nothing remotely, we have nothing to delete on your behalf.</p>
+    </div>
 
-<div class="footer">
-  <p>ShipsTime — built by a 28-year cruise crew member, for life at sea. ⚓</p>
+    <!-- Children -->
+    <div class="section">
+        <div class="section-label">Children</div>
+        <p>ShipsTime is designed for cruise ship crew — working adults. We do not knowingly collect data from anyone under 18.</p>
+    </div>
+
+    <!-- Changes -->
+    <div class="section">
+        <div class="section-label">Changes</div>
+        <p>We update this policy when our data practices change. The effective date above always reflects the current version.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="section">
+        <div class="section-label">Contact</div>
+        <div class="contact">
+            <div>
+                <div class="contact-label">Questions?</div>
+                <a href="mailto:edwinshipstime@gmail.com" class="contact-email">edwinshipstime@gmail.com</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        SHIPSTIME &nbsp;·&nbsp; FOR CREW, BY CREW
+    </div>
+
 </div>
-
 </body>
 </html>
